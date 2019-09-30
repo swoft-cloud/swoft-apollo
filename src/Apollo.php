@@ -74,7 +74,8 @@ class Apollo
             }
 
             // Request
-            $client = new Client($this->host, $this->port);
+            $isSsl = $this->port == 443 ? true : false;
+            $client = new Client($this->host, $this->port, $isSsl);
             $client->set(['timeout' => $timeout]);
             $client->get($uri);
             $body   = $client->body;
